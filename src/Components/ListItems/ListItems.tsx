@@ -28,22 +28,22 @@ const ListItems = () => {
     }
     
     const placesToBeMaped = !isEmpty(context?.filteredPlaces) ? context?.filteredPlaces : places;
-    
+
     return (
-        <Box p={5}>
+        <Box p={5} className={classes.container}>
             <Typography variant='h5'>Restaurants, Hotels & Attractions around you</Typography>
             <br/>
             <FormControl>
-                <InputLabel>Type</InputLabel>
-                <Select value={context?.type} onChange={(e)=> context?.setType(e.target.value)}>
-                    <MenuItem value='resturants' >Resturants</MenuItem>
+                <InputLabel className={classes.inputLabel}>Type</InputLabel>
+                <Select className={classes.inputLabel} value={context?.type} onChange={(e)=> context?.setType(e.target.value)}>
+                    <MenuItem value='restaurants' >Resturants</MenuItem>
                     <MenuItem value='hotels'>Hotels</MenuItem>
                     <MenuItem value='attractions'>Attractions</MenuItem>
                 </Select>
             </FormControl>  
             <FormControl className={classes.formControl}>
-                <InputLabel>Rating</InputLabel>
-                <Select value={context?.rating} onChange={(e)=> context?.setRating(e.target.value)}>
+                <InputLabel className={classes.inputLabel}>Rating</InputLabel>
+                <Select className={classes.inputLabel} value={context?.rating} onChange={(e)=> context?.setRating(e.target.value)}>
                     <MenuItem value='0'>All</MenuItem>
                     <MenuItem value='3'>Above 3.0</MenuItem>
                     <MenuItem value='4'>Above 4.0</MenuItem>
@@ -54,7 +54,7 @@ const ListItems = () => {
             <Box height='75vh' overflow='auto'>
                 {placesToBeMaped && placesToBeMaped.map((item: any, i: any) => {
                     return (
-                        <div ref={elRefs[i]}>
+                        <div ref={elRefs[i]} key={item?.name}>
                             <PlaceDetails place={item} refProp={elRefs[i]} selected={context?.selectedPlace === i}/> 
                         </div>                     
                     )

@@ -1,6 +1,13 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
+    container: {
+        backgroundColor: theme.palette.primary.main
+    },
+    header: {
+        textAlign: 'center',
+        color: theme.palette.secondary.main
+    },
     leafletContainer: {
         height: '90vh'
     },

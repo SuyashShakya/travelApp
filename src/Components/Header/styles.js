@@ -2,8 +2,8 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
     appbar : {
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.secondary.main
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.main
     },
     toolbar: {
         display: 'flex',

@@ -9,6 +9,8 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import Box from '@material-ui/core/Box'
+import useTheme from '@material-ui/core/styles/useTheme';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './styles';
 import { ContextWrapper } from '../../../Context';
 import { auth } from '../../../firebase';
@@ -20,9 +22,11 @@ interface LoginFormProps {
 
 const Login: React.FC<LoginFormProps>  = ({onClickRegister}) => {
     const classes = useStyles();
-    const context = React.useContext(ContextWrapper)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const context = React.useContext(ContextWrapper);
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleLoginSubmit = async () => {
         try {
@@ -32,7 +36,6 @@ const Login: React.FC<LoginFormProps>  = ({onClickRegister}) => {
                 message: `Login Successful. Welcome ${result.user.email}`,
                 type: 'success'
             })
-            console.log('hey there', context?.isLoginForm)
             context?.setIsLoginForm(true)
         } catch (e) {
             context?.setAlert({
@@ -65,7 +68,7 @@ const Login: React.FC<LoginFormProps>  = ({onClickRegister}) => {
 
     return (
         <Paper elevation={3}>
-            <Box width={300} p={5}>
+            <Box width={isSmallScreen ? 200 : 300} p={5}>
                 <Typography variant='h6' className={classes.loginText}><b>Sign in</b></Typography>
                 <br/>
                 <FormControl variant='standard' fullWidth>

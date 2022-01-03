@@ -5,7 +5,6 @@ import MuiAlert from '@material-ui/lab/Alert';
 
 const Alert = () => {
     const context = React.useContext(ContextWrapper);
-    console.log('hello', context)
     const handleClose = (event, reason) => {
         if(reason === 'clickaway') {
             return;

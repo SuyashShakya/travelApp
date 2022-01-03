@@ -58,7 +58,6 @@ const App = () => {
 		}
 	}, [rating])
 
-	console.log('filter', filteredPlaces, rating)
 	const theme = isLightTheme ? lightTheme : darkTheme;
 
 	const toggleTheme = () => {

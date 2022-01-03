@@ -7,7 +7,9 @@ import Input from '@material-ui/core/Input';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
+import useTheme from '@material-ui/core/styles/useTheme';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import useStyles from './styles';
 import { ContextWrapper } from '../../../Context';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -24,6 +26,9 @@ const Register: React.FC<RegisterFormProps>  = ({onLogin, setIsLoginForm}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('')
+    const theme = useTheme();
+
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
     const handleRegisterSubmit = async () => {
         if(password !== confirmPassword){
@@ -40,7 +45,6 @@ const Register: React.FC<RegisterFormProps>  = ({onLogin, setIsLoginForm}) => {
                 message: `Sign up Successful. You have registered with ${result.user.email}`,
                 type: 'success'
             })
-            console.log('hey there', context?.isLoginForm)
             context?.setIsLoginForm(true)
         } catch (e) {
             context?.setAlert({
@@ -53,7 +57,7 @@ const Register: React.FC<RegisterFormProps>  = ({onLogin, setIsLoginForm}) => {
 
     return (
         <Paper elevation={3}>
-            <Box width={300} p={5}>
+            <Box width={isSmallScreen ? 200 : 300} p={5}>
                 <Typography variant='h6' className={classes.registerText}><b>Sign up</b></Typography>
                 <br/>
                 <FormControl variant='standard' fullWidth>
