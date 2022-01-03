@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         justifyContent: 'space-between',
         backgroundColor: theme.palette.primary.main 
+    },
+    loginInfo: {
+        color: theme.palette.secondary.main
     }
 }))
 

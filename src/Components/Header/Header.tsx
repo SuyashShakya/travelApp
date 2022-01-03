@@ -15,7 +15,7 @@ const Header = () => {
         <AppBar position='static' className={classes.appbar}>
             <Toolbar className={classes.toolbar}>
                 <Typography variant='h6'>
-                    Travel Companion
+                    <b>Travel Companion</b>
                 </Typography>  
                 <Box display='flex' flexDirection='row' alignItems='center'>
                     <SideBar />

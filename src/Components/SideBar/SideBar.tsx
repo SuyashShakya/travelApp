@@ -46,7 +46,7 @@ const SideBar = () => {
     const SideBarContent = () => {
         return (
             <Box display='flex' className={classes.box}>
-                <Typography>You are logged in with: {context?.user?.email}</Typography>
+                <Typography className={classes.loginInfo}>You are logged in with: {context?.user?.email}</Typography>
                 <Button variant='contained' className={classes.logoutButton} onClick={logout}>Logout</Button> &nbsp; &nbsp;
             </Box>
         )   
