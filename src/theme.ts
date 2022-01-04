@@ -3,10 +3,10 @@ import {createTheme} from '@material-ui/core/styles';
 export const lightTheme = createTheme({
     palette: {
         primary: {
-            main: '#c9ccd1',
+            main: '#f2ebeb',
         },
         secondary: {
-            main: '#404347'
+            main: '#361111'
         },
     },
 });
@@ -14,10 +14,10 @@ export const lightTheme = createTheme({
 export const darkTheme = createTheme({
     palette: {
         primary: {
-            main: '#404347',
+            main: '#361111',
         },
         secondary: {
-            main: '#c9ccd1'
+            main: '#f2ebeb'
         },
     },
 });

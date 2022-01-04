@@ -5,9 +5,10 @@ import {DivIcon} from 'leaflet';
 import {useSelector} from 'react-redux';
 import {Box, Typography} from '@material-ui/core';
 import ReactDOMServer from 'react-dom/server';
-import useStyles from './styles';
 import { Rating } from '@material-ui/lab';
+
 import { ContextWrapper } from '../../Context';
+import useStyles from './styles';
 
 interface MapsProps {
 	coordinates?: any,
@@ -24,7 +25,7 @@ const Maps: React.FC<MapsProps> = ({coordinates, setCoordinates}) => {
     const Icon = ({item}: any) => {
         return (
             <Box className={classes.divIcon} > 
-                <Typography variant='caption'>{item.name}</Typography>    
+                <Typography variant='caption' className={classes.header}>{item.name}</Typography>    
                 <img src={item?.photo ? item?.photo?.images?.thumbnail?.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'} alt='' height={50} width={50} />
                 <Rating name='read-only' size='small' value={Number(item.rating)} readOnly />
             </Box>
@@ -58,7 +59,7 @@ const Maps: React.FC<MapsProps> = ({coordinates, setCoordinates}) => {
                     }
                     return(
                         <Marker
-                            key={item?.name} 
+                            key={`${item?.name}${index}`} 
                             position={[Number(item?.latitude), Number(item?.longitude)]} 
                             icon={divIcon({item})}  
                             eventHandlers={{

@@ -1,5 +1,5 @@
 import React, {useState, createRef} from 'react';
-import {Box, Typography, InputLabel, MenuItem, FormControl, Select, CircularProgress} from '@material-ui/core';
+import {Box, Typography, InputLabel, MenuItem, FormControl, Select, CircularProgress, useMediaQuery, useTheme} from '@material-ui/core';
 import isEmpty from 'lodash/isEmpty';
 import useStyles from './styles';
 import PlaceDetails from '../PlaceDetails/PlaceDetails';
@@ -11,6 +11,8 @@ const ListItems = () => {
     const places = useSelector((state: any) => state?.places);
     const context = React.useContext(ContextWrapper); 
     const [elRefs, setElRefs] = useState([]);
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
     
     React.useEffect(() => {
         /* eslint-disable */
@@ -28,10 +30,9 @@ const ListItems = () => {
     }
     
     const placesToBeMaped = !isEmpty(context?.filteredPlaces) ? context?.filteredPlaces : places;
-
     return (
         <Box p={5} className={classes.container}>
-            <Typography variant='h5'>Restaurants, Hotels & Attractions around you</Typography>
+            <Typography variant={isSmallScreen ? 'subtitle2' : 'h5'}>Restaurants, Hotels & Attractions around you</Typography>
             <br/>
             <FormControl>
                 <InputLabel className={classes.inputLabel}>Type</InputLabel>
@@ -54,7 +55,7 @@ const ListItems = () => {
             <Box height='75vh' overflow='auto'>
                 {placesToBeMaped && placesToBeMaped.map((item: any, i: any) => {
                     return (
-                        <div ref={elRefs[i]} key={item?.name}>
+                        <div ref={elRefs[i]} key={`${item?.name}${i}`}>
                             <PlaceDetails place={item} refProp={elRefs[i]} selected={context?.selectedPlace === i}/> 
                         </div>                     
                     )

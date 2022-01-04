@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, CardContent, CardMedia, Typography, Box, Chip, CardActions, Button} from '@material-ui/core';
+import {Card, CardContent, CardMedia, Typography, Box, Chip, CardActions, Button, useTheme, useMediaQuery} from '@material-ui/core';
 import LocationOnIcon from '@material-ui/icons/LocationOn'; 
 import PhoneIcon from '@material-ui/icons/Phone';
 import useStyles from './styles';
@@ -12,6 +12,9 @@ interface PlacesProps {
 }
 
 const PlaceDetails: React.FC<PlacesProps> = ({place, selected, refProp}) => {
+    const theme = useTheme();
+    const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
+
     if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     const classes = useStyles();
     return (
@@ -19,29 +22,29 @@ const PlaceDetails: React.FC<PlacesProps> = ({place, selected, refProp}) => {
             <CardMedia
                 component="img"
                 alt={place?.name}
-                height="350"
+                height={isSmallScreen ? 150 : 350}
                 image={place.photo ? place.photo.images.large.url : 'https://www.foodserviceandhospitality.com/wp-content/uploads/2016/09/Restaurant-Placeholder-001.jpg'}
             />
             <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant={isSmallScreen ? 'subtitle2' : 'h5'} component="div">
                 {place.name}
             </Typography>
             <Box display="flex" justifyContent="space-between" my={2}>
                 <Rating name="read-only" value={Number(place.rating)} readOnly />
-                <Typography component="legend">{place.num_reviews} review{place.num_reviews > 1 && 's'}</Typography>
+                <Typography component="legend" variant={isSmallScreen ? 'subtitle2' : 'h5'}>{place.num_reviews} review{place.num_reviews > 1 && 's'}</Typography>
             </Box>
             <Box display='flex' justifyContent='space-between'>
-                <Typography variant='subtitle1'>Price</Typography>
-                <Typography variant='subtitle1'>{place.price}</Typography>
+                <Typography variant={isSmallScreen ? 'body2' : 'subtitle1'}>Price: </Typography>
+                <Typography variant={isSmallScreen ? 'caption' : 'subtitle2'}>{place.price}</Typography>
             </Box>
             <Box display='flex' justifyContent='space-between'>
-                <Typography variant='subtitle1'>Ranking</Typography>
-                <Typography variant='subtitle1'>{place.ranking}</Typography>
+                <Typography variant={isSmallScreen ? 'body2' : 'subtitle1'}>Ranking: </Typography>
+                <Typography variant={isSmallScreen ? 'caption' : 'subtitle2'}>{place.ranking}</Typography>
             </Box>
             {place?.awards?.map((award: any) => (
-                <Box display="flex" justifyContent="space-between" my={1} alignItems="center">
+                <Box key={award.display_name} display="flex" justifyContent="space-between" my={1} alignItems="center">
                     <img src={award.images.small} />
-                    <Typography variant="subtitle2" color="textSecondary">{award.display_name}</Typography>
+                    <Typography variant={isSmallScreen ? 'caption' : 'subtitle2'}>{award.display_name}</Typography>
                 </Box>
             ))}
             {place?.cuisine?.map(({name}: any) => (
@@ -49,21 +52,21 @@ const PlaceDetails: React.FC<PlacesProps> = ({place, selected, refProp}) => {
             ))}
             <br /><br />
             {place.address && (
-                <Typography gutterBottom variant="body2" color="textSecondary" className={classes.subtitle}>
+                <Typography gutterBottom variant={isSmallScreen ? 'caption' : 'subtitle1'} className={classes.subtitle}>
                     <LocationOnIcon />{place.address}
                 </Typography>
             )}
             {place.phone && (
-                <Typography variant="body2" color="textSecondary" className={classes.spacing}>
+                <Typography variant={isSmallScreen ? 'caption' : 'subtitle1'} className={classes.spacing}>
                     <PhoneIcon /> {place.phone}
                 </Typography>
             )} 
             </CardContent>
             <CardActions>
-                <Button size="small" onClick={() => window.open(place.web_url, '_blank')}>
+                <Button size='small' className={classes.colorStyle} onClick={() => window.open(place.web_url, '_blank')}>
                     Trip Advisor
                 </Button>
-                <Button size="small" onClick={() => window.open(place.website, '_blank')}>
+                <Button size='small' className={classes.colorStyle} onClick={() => window.open(place.website, '_blank')}>
                     Website
                 </Button>
             </CardActions>

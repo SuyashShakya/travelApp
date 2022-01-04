@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import isEmpty from 'lodash/isEmpty';
 import Grid from '@material-ui/core/Grid'
 import {ThemeProvider} from '@material-ui/core/styles';
+import Hidden from '@material-ui/core/Hidden';
 
 import Header from './Components/Header/Header';
 import ListItems from './Components/ListItems/ListItems';
@@ -91,15 +92,28 @@ const App = () => {
 				<ThemeProvider theme={theme}>
 					<Header />
 					<Grid container>
-						<Grid item xs={12} md={4}>
-							<ListItems />
-						</Grid>
-						<Grid item xs={12} md={8}>
-							<Maps 
-								coordinates={coordinates}
-								setCoordinates={setCoordinates}
-							/>
-						</Grid>
+						<Hidden smDown>
+							<Grid item xs={12} md={4}>
+								<ListItems />
+							</Grid>
+							<Grid item xs={12} md={8}>
+								<Maps 
+									coordinates={coordinates}
+									setCoordinates={setCoordinates}
+								/>
+							</Grid>
+						</Hidden>
+						<Hidden mdUp>
+							<Grid item xs={12} md={8}>
+								<Maps 
+									coordinates={coordinates}
+									setCoordinates={setCoordinates}
+								/>
+							</Grid>
+							<Grid item xs={12} md={4}>
+								<ListItems />
+							</Grid>
+						</Hidden>		
 					</Grid>
 				</ThemeProvider>
 				: 

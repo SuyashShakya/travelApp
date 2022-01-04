@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
         color: theme.palette.secondary.main,
     },
     formControl: {
@@ -10,7 +10,8 @@ const useStyles = makeStyles((theme) => ({
         width: 100
     },
     inputLabel: {
-        color: theme.palette.secondary.main
+        color: theme.palette.secondary.main,
+        fontSize: 12
     }
 }))
 

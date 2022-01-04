@@ -2,7 +2,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     card: {
-        margin: 5,
+        margin: 10,
         backgroundColor: theme.palette.primary.dark,
         color: theme.palette.secondary.main,
     },
@@ -13,13 +13,18 @@ const useStyles = makeStyles((theme) => ({
     subtitle: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        justifyContent: 'space-between',
+        color: theme.palette.secondary.main
     },
     spacing: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-between'
-    }
+        justifyContent: 'space-between',
+        color: theme.palette.secondary.main
+    },
+    colorStyle: {
+        color: theme.palette.secondary.main
+    } 
 }))
 
 export default useStyles; 

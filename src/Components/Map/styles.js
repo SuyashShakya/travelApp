@@ -2,13 +2,16 @@ import makeStyles from '@material-ui/core/styles/makeStyles';
 
 const useStyles = makeStyles((theme) => ({
     container: {
-        backgroundColor: theme.palette.primary.main
+        backgroundColor: theme.palette.primary.light
     },
     header: {
         textAlign: 'center',
         color: theme.palette.secondary.main
     },
     leafletContainer: {
+        [theme.breakpoints.down('sm')]: {
+            height: '30vh'
+        },
         height: '90vh'
     },
     divIcon: {
