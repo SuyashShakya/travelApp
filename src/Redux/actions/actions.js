@@ -10,7 +10,7 @@ export const fetchPlaces = ({coordinates, type}) => {
         },
         headers: {
             'x-rapidapi-host': 'travel-advisor.p.rapidapi.com',
-            'x-rapidapi-key': 'e791329e70mshdaf695113ed9902p12a0c0jsnabc3b45c18d5'
+            'x-rapidapi-key': '4bfb3efcb7msh22683d0687b904dp14a9f7jsn45cac8a7115c'
         }
     };    
     return async(dispatch) => {
