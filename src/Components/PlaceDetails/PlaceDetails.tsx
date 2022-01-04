@@ -43,7 +43,7 @@ const PlaceDetails: React.FC<PlacesProps> = ({place, selected, refProp}) => {
             </Box>
             {place?.awards?.map((award: any) => (
                 <Box key={award.display_name} display="flex" justifyContent="space-between" my={1} alignItems="center">
-                    <img src={award.images.small} />
+                    <img src={award.images.small} alt={award.display_name}/>
                     <Typography variant={isSmallScreen ? 'caption' : 'subtitle2'}>{award.display_name}</Typography>
                 </Box>
             ))}
