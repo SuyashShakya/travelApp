@@ -38,40 +38,40 @@ const Maps: React.FC<MapsProps> = ({coordinates, setCoordinates}) => {
 
 
     return (
-        // <Box className={classes.container}>
-        //     <Typography variant='subtitle2' className={classes.header}>Click on the map to get restaurnats, hotels and attractions of that area</Typography>
-        <MapContainer center={[coordinates.lat, coordinates.lng]} zoom={13} scrollWheelZoom={true} className={classes.leafletContainer} >
-            <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <MapConsumer>
-                {(map) => {
-                    map.on('click', function (e) {
-                        setCoordinates((e as any)?.latlng)
-                    });
-                    return null;
-                }}
-            </MapConsumer>
-            {placesToBeMaped.map((item: any, index: any) => {
-                if(isEmpty(item.latitude)){
-                    return true
-                }
-                return(
-                    <Marker
-                        key={`${item?.name}${index}`} 
-                        position={[Number(item?.latitude), Number(item?.longitude)]} 
-                        icon={divIcon({item})}  
-                        eventHandlers={{
-                            click: (i) => {
-                                context?.setSelectedPlace(index)
-                            },
-                        }}
-                    />
-                )
-            })}     
-        </MapContainer>
-        // </Box>
+        <Box className={classes.container}>
+            <Typography variant='subtitle2' className={classes.header}>Click on the map to get restaurnats, hotels and attractions of that area</Typography>
+            <MapContainer center={[coordinates.lat, coordinates.lng]} zoom={13} scrollWheelZoom={true} className={classes.leafletContainer} >
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                <MapConsumer>
+                    {(map) => {
+                        map.on('click', function (e) {
+                            setCoordinates((e as any)?.latlng)
+                        });
+                        return null;
+                    }}
+                </MapConsumer>
+                {placesToBeMaped.map((item: any, index: any) => {
+                    if(isEmpty(item.latitude)){
+                        return true
+                    }
+                    return(
+                        <Marker
+                            key={`${item?.name}${index}`} 
+                            position={[Number(item?.latitude), Number(item?.longitude)]} 
+                            icon={divIcon({item})}  
+                            eventHandlers={{
+                                click: (i) => {
+                                    context?.setSelectedPlace(index)
+                                },
+                            }}
+                        />
+                    )
+                })}     
+            </MapContainer>
+        </Box>
     )
 }
 
