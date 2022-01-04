@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.secondary.main
     },
     leafletContainer: {
+        backgroundColor: 'none',
         [theme.breakpoints.down('sm')]: {
             height: '30vh'
         },
